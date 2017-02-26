@@ -30,7 +30,7 @@ public class Hashcode2017 {
         Endpoint[] endpoints = new Endpoint[1];
         int TotalEndponts=0,TotalVideo=0;    
         int i,j=0;
-        File file = new File("/input/kittens.in");
+        File file = new File("input/kittens.in");
         
         Scanner scanner;
         try {
@@ -44,20 +44,18 @@ public class Hashcode2017 {
             String[] entries = scanner.nextLine().split(" ");
             
             if (counter_line == 0){
-                //apothikeusi
-                System.out.println("line0: " + Arrays.toString(entries));
+                //apothikeusi                                
                 counter_line++;
                 TotalVideo = Integer.parseInt(entries[0]);
                 TotalEndponts = Integer.parseInt(entries[1]);
                 Videos =  new Video[TotalVideo];
                 endpoints = new Endpoint[TotalEndponts];
-                
             }else if (counter_line == 1) {
                 //apothikeusi
                 for(i=0; i<entries.length;i++){
                     Videos[i]= new Video(i,Integer.parseInt(entries[i])); 
                 }
-                System.out.println("line1: " + Arrays.toString(entries));
+                //System.out.println("line1: " + Arrays.toString(entries));
                 counter_line++;
             }else {
                 
@@ -68,46 +66,49 @@ public class Hashcode2017 {
                     //apothikeusi latency data center
                     endpoints[j] = new Endpoint(j,Integer.parseInt(entries[0]));
                     j++;
-                    
+                    //System.out.println("---- " + j + " " + Arrays.toString(entries));
                     for (i=0; i<endp_count; i++){
                        
                         String[] end_cache = scanner.nextLine().split(" ");
                         //apothikeusi
-                        System.out.println("End cache:" + i + " " + Arrays.toString(end_cache));
+                        //System.out.println("End cache:" + i + " " + Arrays.toString(end_cache) + " " + (end_cache[1]));
+                        endpoints[j-1].addLattency(Integer.parseInt(end_cache[0]), Integer.parseInt(entries[1]));
                     }
                     
                 }else{
+                    //System.out.println("+++ " + Arrays.toString(entries));
+                    Videos[Integer.parseInt(entries[0])].addRequest(Integer.parseInt(entries[2]), Integer.parseInt(entries[1]));
                     while (scanner.hasNext()){
                         String[] vid_req = scanner.nextLine().split(" ");
                         //apothikeusi
-                        System.out.println("Vid Req:" +Arrays.toString(vid_req));
+                        Videos[Integer.parseInt(vid_req[0])].addRequest(Integer.parseInt(vid_req[2]), Integer.parseInt(vid_req[1]));
+                        //System.out.println("Vid Req:" +Arrays.toString(vid_req));
                     }
-                     
                 }
-                
-               
             }
         }
-
-    double value;
-    List<request> video;
-    request r;
-    for(i=0;i<TotalVideo;i++){
-        j=0;
-        video = Videos[i].getVideoList();
-        while(true){            
-            try{
-                r = video.get(j);
-                value = r.getRequest()/Videos[i].getSize();
-                j++;
-                endpoints[r.getEndpoint()].addBuffer(r,i,value); 
-            }catch (IndexOutOfBoundsException ex){
-                break;
+        System.out.println("Reading completed");
+        
+        double value;
+        List<request> video;
+        request r;
+        for(i=0;i<TotalVideo;i++){
+            j=0;
+            Videos[i].sort();
+            video = Videos[i].getVideoList();
+            
+            while(true){            
+                try{
+                    r = video.get(j);
+                    value = r.getRequest()/Videos[i].getSize();
+                    j++;
+                    endpoints[r.getEndpoint()].addBuffer(r,i,value); 
+                }catch (IndexOutOfBoundsException ex){
+                    break;
+                }
             }
-         }
+        }
+        for (i=0;i<TotalEndponts;i++)
+            endpoints[i].sort();    
     }
-    for (i=0;i<TotalEndponts;i++)
-        endpoints[i].sort();    
-    }
-    
 }
