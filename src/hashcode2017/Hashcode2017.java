@@ -6,10 +6,13 @@
 package hashcode2017;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,14 +24,21 @@ public class Hashcode2017 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         
         int counter_line = 0;
+        Video[] Videos = new Video[1];
+        Endpoint[] endpoints = new Endpoint[1];
+        int TotalEndponts=0,TotalVideo=0;    
+        int i,j=0;
+        File file = new File("/input/kittens.in");
         
-        
-        File file = new File("/home/antonis/Downloads/kittens.in");
-        
-        Scanner scanner = new Scanner(file);
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException ex) {
+            System.out.println("File not found");
+            return;
+        }
         while (scanner.hasNext()){
             
             String[] entries = scanner.nextLine().split(" ");
@@ -37,13 +47,15 @@ public class Hashcode2017 {
                 //apothikeusi
                 System.out.println("line0: " + Arrays.toString(entries));
                 counter_line++;
-                Video[] video =  new Video[Integer.parseInt(entries[0])];
-                Endpoint[] endpoint = new Endpoint[Integer.parseInt(entries[1])];
+                TotalVideo = Integer.parseInt(entries[0]);
+                TotalEndponts = Integer.parseInt(entries[1]);
+                Videos =  new Video[TotalVideo];
+                endpoints = new Endpoint[TotalEndponts];
                 
             }else if (counter_line == 1) {
                 //apothikeusi
-                for(int i=0; i<entries.length;i++){
-                    video[i]= new Video(i,Integer.parseInt(entries[i])); 
+                for(i=0; i<entries.length;i++){
+                    Videos[i]= new Video(i,Integer.parseInt(entries[i])); 
                 }
                 System.out.println("line1: " + Arrays.toString(entries));
                 counter_line++;
@@ -54,8 +66,10 @@ public class Hashcode2017 {
                 if (entries.length == 2){
                     endp_count = Integer.parseInt(entries[1]);
                     //apothikeusi latency data center
+                    endpoints[j] = new Endpoint(j,Integer.parseInt(entries[0]));
+                    j++;
                     
-                    for (int i=0; i< endp_count; i++){
+                    for (i=0; i<endp_count; i++){
                        
                         String[] end_cache = scanner.nextLine().split(" ");
                         //apothikeusi
@@ -74,12 +88,7 @@ public class Hashcode2017 {
                
             }
         }
-    int TotalEndponts,TotalVideo;
-    Endpoint[] endpoints = new Endpoint[TotalEndponts];
-    Video[] Videos = new Video[TotalVideo];
-    
-    int i;
-    int j;
+
     double value;
     List<request> video;
     request r;
