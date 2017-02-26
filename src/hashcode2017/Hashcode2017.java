@@ -87,6 +87,7 @@ public class Hashcode2017 {
                 }
             }
         }
+        scanner.close();
         System.out.println("Reading completed");
         
         double value;
