@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Antonis/Documents/NetBeansProjects/Hashcode2017/src/hashcode2017/request.java</file>
-            <file>file:/C:/Users/Antonis/Documents/NetBeansProjects/Hashcode2017/src/hashcode2017/Endpoint.java</file>
-            <file>file:/C:/Users/Antonis/Documents/NetBeansProjects/Hashcode2017/src/hashcode2017/Hashcode2017.java</file>
-            <file>file:/C:/Users/Antonis/Documents/NetBeansProjects/Hashcode2017/src/hashcode2017/Video.java</file>
-            <file>file:/C:/Users/Antonis/Documents/NetBeansProjects/Hashcode2017/src/hashcode2017/CacheLattency.java</file>
-            <file>file:/C:/Users/Antonis/Documents/NetBeansProjects/Hashcode2017/src/hashcode2017/VidReq.java</file>
+            <file>file:/home/antonis/Documents/GIT/Hashcode/src/hashcode2017/Endpoint.java</file>
+            <file>file:/home/antonis/Documents/GIT/Hashcode/src/hashcode2017/Hashcode2017.java</file>
+            <file>file:/home/antonis/Documents/GIT/Hashcode/src/hashcode2017/Video.java</file>
+            <file>file:/home/antonis/Documents/GIT/Hashcode/src/hashcode2017/request.java</file>
+            <file>file:/home/antonis/Documents/GIT/Hashcode/src/hashcode2017/CacheLattency.java</file>
         </group>
     </open-files>
 </project-private>

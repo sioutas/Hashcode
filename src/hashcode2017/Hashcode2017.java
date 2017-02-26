@@ -66,13 +66,13 @@ public class Hashcode2017 {
                     //apothikeusi latency data center
                     endpoints[j] = new Endpoint(j,Integer.parseInt(entries[0]));
                     j++;
-                    //System.out.println("---- " + j + " " + Arrays.toString(entries));
+                    //System.out.println("---- " + j + " " + (entries[0]));
                     for (i=0; i<endp_count; i++){
                        
                         String[] end_cache = scanner.nextLine().split(" ");
                         //apothikeusi
                         //System.out.println("End cache:" + i + " " + Arrays.toString(end_cache) + " " + (end_cache[1]));
-                        endpoints[j-1].addLattency(Integer.parseInt(end_cache[0]), Integer.parseInt(entries[1]));
+                        endpoints[j-1].addLattency(Integer.parseInt(end_cache[0]), Integer.parseInt(end_cache[1]));
                     }
                     
                 }else{

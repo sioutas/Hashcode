@@ -40,8 +40,9 @@ public class Video {
         requestList.add(rqst);
     }
     
-    public void sort() {    //not tested yet...
-        Collections.sort(getVideoList());
-        Collections.reverse(getVideoList());
+    public void sort() {
+        Collections.sort(requestList);
+        Collections.reverse(requestList);
+        //System.out.println(requestList.get(0).getRequest() +" " + requestList.get(1).getRequest());
     }
 }

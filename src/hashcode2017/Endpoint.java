@@ -35,10 +35,9 @@ public class Endpoint {
     
     public void sort(){
         Collections.sort(LattencyList);     //Sorting to ascending order
-        Collections.reverse(LattencyList);  // and then reverse order
         Collections.sort(buffer);     //Sorting to ascending order
         Collections.reverse(buffer);  // and then reverse order
-            
+        //System.out.println(buffer.get(0).getRate() +" " + buffer.get(1).getRate());
     }
     public void addBuffer(request r, int VId, double rate){
         VidReq v = new VidReq(r,VId,rate);

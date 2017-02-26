@@ -27,9 +27,9 @@ public class request  implements Comparable<request>{
     
     @Override
     public int compareTo(request d) {
-        if (d.getRequest() > getRequest())
+        if (this.getRequest() > d.getRequest())
             return 1;
-        else if (d.getRequest() < getRequest())
+        else if (this.getRequest() < d.getRequest())
             return -1;
         return 0;
     }
