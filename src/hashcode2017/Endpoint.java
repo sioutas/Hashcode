@@ -44,5 +44,7 @@ public class Endpoint {
         buffer.add(v);        
     }
     
-
+    public List getBuffer() {
+        return buffer;
+    }
 }

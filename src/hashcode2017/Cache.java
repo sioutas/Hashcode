@@ -16,11 +16,23 @@ public class Cache {
     private int MaxCacheSize;
     private int RemainingCacheSize;
     private List<Video> cache_vid = new ArrayList<Video>();
+    private List<Integer> endpoints = new ArrayList<Integer>();
+    Hashcode2017 hc;
     
     public Cache(int MaxCacheSize){
         this.MaxCacheSize = MaxCacheSize;
         this.RemainingCacheSize = MaxCacheSize;
     }
     
+    public void AddEndpoint(int i){
+        endpoints.add(i);
+    }
     
+    public void algorithm() {
+        VideoList[] EndpointVideoList = new VideoList[endpoints.size()];
+        for (int i = 0; i < endpoints.size(); i++) {
+            EndpointVideoList[i] = hc.sendBuffer(endpoints.get(i));
+        }
+        
+    }
 }

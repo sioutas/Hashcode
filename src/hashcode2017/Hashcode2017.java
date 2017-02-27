@@ -5,17 +5,13 @@
  */
 package hashcode2017;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Scanner;
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -26,12 +22,14 @@ public class Hashcode2017 {
     /**
      * @param args the command line arguments
      */
+    
+    private static int TotalEndponts,TotalVideo, TotalRequest, TotalCaches, MaxCacheSize;
+    private static Video[] Videos;
+    private static Endpoint[] endpoints;
+    private static Cache[] caches;
+    
     public static void main(String[] args) {
-        
         int counter_line = 0;
-        Video[] Videos = new Video[1];
-        Endpoint[] endpoints = new Endpoint[1];
-        int TotalEndponts=0,TotalVideo=0, TotalRequest=0, TotalCaches=0, MaxCacheSize=0;    
         int i,j=0;
         File file = new File("input/kittens.in");
         
@@ -43,7 +41,6 @@ public class Hashcode2017 {
             return;
         }
         while (scanner.hasNext()){
-            
             String[] entries = scanner.nextLine().split(" ");
             
             if (counter_line == 0){
@@ -56,6 +53,7 @@ public class Hashcode2017 {
                 MaxCacheSize = Integer.parseInt(entries[4]);
                 Videos =  new Video[TotalVideo];
                 endpoints = new Endpoint[TotalEndponts];
+                caches = new Cache[TotalCaches];
             }else if (counter_line == 1) {
                 //apothikeusi
                 for(i=0; i<entries.length;i++){
@@ -71,11 +69,12 @@ public class Hashcode2017 {
                     endp_count = Integer.parseInt(entries[1]);
                     //apothikeusi latency data center
                     endpoints[j] = new Endpoint(j,Integer.parseInt(entries[0]));
+                    
                     j++;
                     //System.out.println("---- " + j + " " + (entries[0]));
                     for (i=0; i<endp_count; i++){
-                       
                         String[] end_cache = scanner.nextLine().split(" ");
+                        caches[Integer.parseInt(end_cache[0])].AddEndpoint(j-1);
                         //apothikeusi
                         //System.out.println("End cache:" + i + " " + Arrays.toString(end_cache) + " " + (end_cache[1]));
                         endpoints[j-1].addLattency(Integer.parseInt(end_cache[0]), Integer.parseInt(end_cache[1]));
@@ -120,6 +119,7 @@ public class Hashcode2017 {
         
         writeFile();
     }
+    
     private static void writeFile(){
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -148,5 +148,9 @@ public class Hashcode2017 {
             System.out.println("Writing Error");
             System.exit(-1);
         }
+    }
+    
+    public List<Endpoint> sendBuffer(int i) {
+        return endpoints[i].getBuffer();
     }
 }
