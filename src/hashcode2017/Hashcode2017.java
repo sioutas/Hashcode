@@ -9,6 +9,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -109,6 +116,37 @@ public class Hashcode2017 {
             }
         }
         for (i=0;i<TotalEndponts;i++)
-            endpoints[i].sort();    
+            endpoints[i].sort();  
+        
+        writeFile();
+    }
+    private static void writeFile(){
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        int NumCashes =3; //test variable... later cashe number
+        try {
+            fw = new FileWriter("out1.txt");
+            bw = new BufferedWriter(fw);     
+            bw.write(Integer.toString(NumCashes));
+            int i;
+            for (i=0;i<NumCashes;i++){
+                String out = "\n" + Integer.toString(i);
+                //while(true)
+                    out = out + " "+ "aa" ;
+                    //out = out + " "+ "bb" ;
+                
+                
+                bw.write(out);
+            }
+            
+            
+            fw.flush();
+            bw.flush();
+            fw.close();
+            bw.close();
+        } catch (IOException ex) {
+            System.out.println("Writing Error");
+            System.exit(-1);
+        }
     }
 }
