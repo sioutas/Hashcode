@@ -7,12 +7,8 @@ package hashcode2017;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,7 +24,7 @@ public class Hashcode2017 {
         int counter_line = 0;
         Video[] Videos = new Video[1];
         Endpoint[] endpoints = new Endpoint[1];
-        int TotalEndponts=0,TotalVideo=0;    
+        int TotalEndponts=0,TotalVideo=0, TotalRequest=0, TotalCaches=0, MaxCacheSize=0;    
         int i,j=0;
         File file = new File("input/kittens.in");
         
@@ -48,6 +44,9 @@ public class Hashcode2017 {
                 counter_line++;
                 TotalVideo = Integer.parseInt(entries[0]);
                 TotalEndponts = Integer.parseInt(entries[1]);
+                TotalRequest = Integer.parseInt(entries[2]);
+                TotalCaches = Integer.parseInt(entries[3]);
+                MaxCacheSize = Integer.parseInt(entries[4]);
                 Videos =  new Video[TotalVideo];
                 endpoints = new Endpoint[TotalEndponts];
             }else if (counter_line == 1) {
